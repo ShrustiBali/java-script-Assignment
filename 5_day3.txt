@@ -1,0 +1,11 @@
+const element = document.getElementById("Google Logo").addEventListener("mouseover", mouseOver);
+function mouseOver(){
+    document.getElementById("Google Logo").style.height="800px";
+    document.getElementById("Google Logo").style.width="800px";
+};
+
+const element1 = document.getElementById("Google Logo").addEventListener("mouseout", mouseOut);
+function mouseOut(){
+    document.getElementById("Google Logo").style.height="200px";
+    document.getElementById("Google Logo").style.width="200px";
+};

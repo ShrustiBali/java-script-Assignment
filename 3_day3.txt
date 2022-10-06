@@ -1,0 +1,20 @@
+function addEmailAddress(){
+    let textField = document.createElement("input");
+    textField.setAttribute("type","email");
+    document.body.appendChild(textField);
+    textField.placeholder = "Enter your Email";
+
+    let removeEmailButton = document.createElement("input");
+    removeEmailButton.setAttribute("type","button");
+    removeEmailButton.value = "Remove Email";
+    document.body.appendChild(removeEmailButton);
+
+    removeEmailButton.onclick=function(){
+
+        document.body.removeChild(textField);
+        document.body.removeChild(removeEmailButton);
+    }
+}
+
+
+
