@@ -1,0 +1,9 @@
+add=(a=0,b=0,...c)=>{
+    var add=a+b;
+    for (let index = 0; index < c.length; index++) {
+       add+=c[index]; 
+    }
+    console.log(`add: ${add}`);
+
+}
+add();
