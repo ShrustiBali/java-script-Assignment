@@ -1,0 +1,283 @@
+1.linked list
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="linkedlist.js"></script> -->
+</head>
+
+<body>
+    <button onclick="enterValue()">click here to add a node</button>
+    <button onclick="myList.printList()" id="print">click here to print a list</button>
+    <button onclick="myList.deleteHead()">click here to delete a node</button>
+    <script>
+        class Node {
+            constructor(value) {
+                this.value = value,
+                    this.next = null
+            }
+        }
+        class LinkedList {
+            //Creates a linkedlist with passed value.
+            constructor(value) {
+                //Creates a head node
+                this.head = {
+                    value: value,
+                    next: null
+                };
+                //As there is only one element in the list, head is also a tail
+                this.tail = this.head;
+                //Length would be 1
+                this.length = 1;
+            }
+
+
+            append(value) {
+
+                //Create a new Node by creating a instance of a Node class
+                const newNode = new Node(value);
+
+                // Check if head is present or not, if head is empty creates a head
+                if (this.head == null) {
+                    this.head = node;
+                }
+                else {
+                    this.tail.next = newNode;
+
+                    //Now make newNode a tail node
+                    this.tail = newNode;
+
+                    //Increase the length by 1
+                    this.length++;
+                }
+                return this;
+            }
+            printList() {
+                //Creates an empty array.
+                let printArrayList = [];
+
+                //Pointer which points to the head node
+                let currentNode = this.head;
+
+                //Start iterating from the first node till you reach the last node
+                while (currentNode !== null) {
+                    //Add every node's value to the array
+                    printArrayList.push(currentNode.value);
+
+                    //Point pointer to the next node
+                    currentNode = currentNode.next;
+                }
+                //Return the array
+                // document.write(printArrayList.join(' -> '));
+                 console.log(printArrayList.join("->"))
+                // var b=document.createElement("button");
+                // tag.appendChild('b')
+                // document.getElementById()
+
+            }
+            deleteHead() {
+                this.head = this.head.next;
+                this.length--;
+                return this;
+            }
+        }
+        const myList = new LinkedList()
+
+        function enterValue() {
+            var value = prompt("enter the value ")
+            myList.append(value)
+
+        }
+
+
+
+
+        function toPrint() {
+            myList.printList();
+        }
+// console.log('Appendding Node at constant time O(1): 40 -> 50:');
+
+// myList.append(value);
+// console.log(myList);
+
+    </script>
+</body>
+
+</html>
+
+2.Stack implementation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <button type="submit" id="push">Push</button>
+    <button type="submit" id="pop">Pop</button>
+    <button type="submit" id="print">Print</button>
+    <br>
+    <br>
+    <div id="tablediv">
+        <table border="5">
+            <thead>
+                <tr>
+                    <th>Stack</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+<script>
+    class Stack {
+    constructor() {
+        this.items = [];
+        let top = -1;
+    }
+
+    push(element)
+    {
+        this.items.push(element);
+    }
+
+    pop()
+    {
+        if(this.items.length == 0)
+        {
+            return "Stack Underflow";
+        }
+        return this.items.pop();
+    }
+
+    print() 
+    {
+        var str = "";
+        for(let i = 0; i < this.items.length; i++)
+        {
+            str += this.items[i] + " ";
+        }
+        console.log(str);
+    }
+}
+
+let stacker = new Stack();
+
+$("#push").on('click', function() {
+    stacker.push(prompt("Enter a value to the Stack"));
+    newTableData = `<tr> <td> ${stacker.items} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(newTableData);
+})
+
+$("#pop").on('click', function() {
+    stacker.pop();
+    remTableData = `<tr> <td> ${stacker.items} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(remTableData);
+})
+
+$("#print").on('click', function() {
+    stacker.print();
+})
+
+
+</script>
+</body>
+</html>
+
+
+3. Queue implementation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <button type="submit" id="add">Add</button>
+    <button type="submit" id="del">Remove</button>
+    <button type="submit" id="prnt">Print</button>
+    <br>
+    <br>
+    <div id="tablediv">
+        <table border="5">
+            <thead>
+                <tr>
+                    <th>Queue</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script >
+        class Queue {
+    constructor()
+    {
+        this.data = [];
+        this.rear = 0;
+        this.size = 10;
+    }
+
+    insert(element) {
+        if(this.rear < this.size)
+        {
+            this.data[this.rear] = element;
+            this.rear = this.rear + 1;        
+        }
+    }
+
+    isEmpty() {
+        return this.rear === 0;
+    }
+
+    delete()
+    {
+        if(this.isEmpty() === false)
+        {
+            this.rear = this.rear - 1;
+            return this.data.shift();
+        }
+    }
+
+    print()
+    {
+        for(let i = 0; i < this.rear; i++)
+        {
+            console.log(this.data[i]);
+        }
+    }
+}
+
+let q = new Queue();
+
+$("#add").on('click', function() {
+    q.insert(prompt("Enter a value to the Queue"));
+    newTableData = `<tr> <td> ${q.data} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(newTableData);
+})
+
+$("#del").on('click', function() {
+    q.delete();
+    remTableData = `<tr> <td> ${q.data} </td> </tr>`;
+    tableRow = $("table tbody");
+    tableRow.append(remTableData);
+})
+
+$("#prnt").on('click', function() {
+    q.print();
+})
+    </script>
+</body>
+</html>
+
